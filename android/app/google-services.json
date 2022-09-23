@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1040615914178",
+    "project_id": "fashion-shop-app-e37ab",
+    "storage_bucket": "fashion-shop-app-e37ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040615914178:android:12e94f469ff22d6151995b",
+        "android_client_info": {
+          "package_name": "com.example.fashion_shop_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040615914178-4drlbp8rlcdpmfu2jjvdkmhh18sgolpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNuGCsRKTclzmsHFomLWPQDqMNEYbr3M8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040615914178-4drlbp8rlcdpmfu2jjvdkmhh18sgolpj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
