@@ -1,5 +1,7 @@
 import 'package:fashion_shop_app/components/custom_appbar.dart';
+import 'package:fashion_shop_app/pages/favorite/components/favotite_list.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
+import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
 
@@ -10,19 +12,25 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        centerTitle: true,
-        title: BigText(text: 'Yêu Thích',color: AppColor.nearlyWhite,),
-        backgroundColor: AppColor.nearlyBlue,
-        leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios_rounded),),
-        elevation: 1,
-        statusBarColor: AppColor.nearlyBlue,
-        action: [
-          IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.shopping_cart_outlined,
+          centerTitle: true,
+          title: BigText(
+            text: 'Yêu Thích',
+            color: AppColor.nearlyWhite,
           ),
-        ),]
+          backgroundColor: AppColor.nearlyBlue,
+          elevation: 1,
+          statusBarColor: AppColor.nearlyBlue,
+          action: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.shopping_cart_outlined,
+              ),
+            ),
+          ]),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: Dimension.size10),
+        child: FavoriteList(),
       ),
     );
   }

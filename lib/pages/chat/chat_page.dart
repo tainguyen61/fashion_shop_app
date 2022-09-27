@@ -12,18 +12,22 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        backgroundColor: AppColor.nearlyWhite,
-        statusBarColor: AppColor.nearlyWhite,
-        title: BigText(text: 'FShop'),
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-            color: AppColor.nearlyBlack,
+          backgroundColor: AppColor.nearlyBlue,
+          statusBarColor: AppColor.nearlyBlue,
+          centerTitle: true,
+          title: BigText(
+            text: 'FShop',
+            color: AppColor.nearlyWhite,
           ),
-        ),
-        elevation: .5,
-      ),
+          elevation: .5,
+          action: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.shopping_cart_outlined,
+              ),
+            ),
+          ]),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(Dimension.size10),
         child: ClipRRect(

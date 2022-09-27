@@ -9,6 +9,7 @@ class BigText extends StatelessWidget {
   TextOverflow? overflow;
   int maxLine;
   FontWeight? fontWeight;
+  TextAlign? textAlign;
   BigText(
       {Key? key,
       this.color = const Color(0xFF332d2b),
@@ -16,7 +17,8 @@ class BigText extends StatelessWidget {
       this.size = 0,
       this.overflow,
       this.maxLine = 1,
-      this.fontWeight})
+      this.fontWeight,
+      this.textAlign})
       : super(key: key);
 
   @override
@@ -25,6 +27,7 @@ class BigText extends StatelessWidget {
       text,
       maxLines: maxLine,
       overflow: overflow,
+      textAlign: textAlign,
       style: TextStyle(
           height: 1.4.sp,
           fontFamily: 'Roboto',
