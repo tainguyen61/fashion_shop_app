@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:fashion_shop_app/components/cart.dart';
 import 'package:fashion_shop_app/pages/product/components/bottom_product.dart';
 import 'package:fashion_shop_app/pages/product/components/image_list.dart';
 import 'package:fashion_shop_app/pages/product/components/product_describle.dart';
@@ -91,7 +92,7 @@ class _ProductPageState extends State<ProductPage>
                 height: Dimension.size80,
                 child: AnimatedBuilder(
                   animation: _ColorAnimationController,
-                  builder: (context, child) => AppBar(
+                  builder: (ct, child) => AppBar(
                     leading: Stack(
                       children: [
                         CircleAvatar(
@@ -103,7 +104,7 @@ class _ProductPageState extends State<ProductPage>
                               color: _iconColorTween.value,
                             ),
                             onPressed: () {
-//                          Navigator.of(context).push(TutorialOverlay());
+                              Navigator.pop(context);
                             },
                           ),
                         ),
@@ -118,7 +119,7 @@ class _ProductPageState extends State<ProductPage>
                                 color: _iconColorTween.value,
                               ),
                               onPressed: () {
-//                          Navigator.of(context).push(TutorialOverlay());
+                                Navigator.pop(context);
                               },
                             ),
                           ),
@@ -136,30 +137,14 @@ class _ProductPageState extends State<ProductPage>
                           CircleAvatar(
                             radius: Dimension.radius30,
                             backgroundColor: Colors.transparent,
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.local_grocery_store,
-                                color: _iconColorTween.value,
-                              ),
-                              onPressed: () {
-//                          Navigator.of(context).push(TutorialOverlay());
-                              },
-                            ),
+                            child: Cart(color: _iconColorTween.value,),
                           ),
                           Opacity(
                             opacity: .5,
                             child: CircleAvatar(
                               radius: Dimension.radius30,
                               backgroundColor: _backgroundIconColorTween.value,
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.local_grocery_store,
-                                  color: _iconColorTween.value,
-                                ),
-                                onPressed: () {
-//                          Navigator.of(context).push(TutorialOverlay());
-                                },
-                              ),
+                              child: Cart(color: _iconColorTween.value,),
                             ),
                           ),
                         ],

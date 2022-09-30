@@ -10,16 +10,19 @@ class BigText extends StatelessWidget {
   int maxLine;
   FontWeight? fontWeight;
   TextAlign? textAlign;
-  BigText(
-      {Key? key,
-      this.color = const Color(0xFF332d2b),
-      required this.text,
-      this.size = 0,
-      this.overflow,
-      this.maxLine = 1,
-      this.fontWeight,
-      this.textAlign})
-      : super(key: key);
+  double? height;
+
+  BigText({
+    Key? key,
+    this.color = const Color(0xFF332d2b),
+    required this.text,
+    this.size = 0,
+    this.overflow,
+    this.maxLine = 1,
+    this.fontWeight,
+    this.textAlign,
+    this.height = 1.4,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class BigText extends StatelessWidget {
       overflow: overflow,
       textAlign: textAlign,
       style: TextStyle(
-          height: 1.4.sp,
+          height: height == 1.4 ? 1.4.sp : height?.sp,
           fontFamily: 'Roboto',
           color: color,
           fontSize: size == 0 ? 20.sp : size,

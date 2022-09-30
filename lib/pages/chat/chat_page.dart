@@ -1,3 +1,4 @@
+import 'package:fashion_shop_app/components/cart.dart';
 import 'package:fashion_shop_app/components/custom_appbar.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
@@ -21,12 +22,7 @@ class ChatPage extends StatelessWidget {
           ),
           elevation: .5,
           action: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.shopping_cart_outlined,
-              ),
-            ),
+            Cart(),
           ]),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(Dimension.size10),

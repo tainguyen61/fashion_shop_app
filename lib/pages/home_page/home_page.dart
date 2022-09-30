@@ -1,5 +1,7 @@
+import 'package:fashion_shop_app/components/cart.dart';
 import 'package:fashion_shop_app/components/custom_appbar.dart';
 import 'package:fashion_shop_app/pages/cart/cart_page.dart';
+import 'package:fashion_shop_app/pages/cart/data/cart_state.dart';
 import 'package:fashion_shop_app/pages/home_page/components/category/list_category.dart';
 import 'package:fashion_shop_app/pages/home_page/components/deal/deal_list.dart';
 import 'package:fashion_shop_app/pages/home_page/components/panel/panel_list.dart';
@@ -10,6 +12,7 @@ import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,17 +32,8 @@ class HomePage extends StatelessWidget {
               Icons.notifications_none,
             ),
           ),
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const CartPage(),
-                  ),);
-            },
-            icon: const Icon(
-              Icons.shopping_cart_outlined,
-            ),
-          ),
+          Cart(),
+
         ],
         title: ClipRRect(
           borderRadius: BorderRadius.circular(Dimension.radius5),
@@ -71,10 +65,10 @@ class HomePage extends StatelessWidget {
               height: Dimension.size10,
             ),
             PanelList(),
-            SizedBox(
-              height: Dimension.size10,
-            ),
-            DealList(),
+            // SizedBox(
+            //   height: Dimension.size10,
+            // ),
+            // DealList(),
             SizedBox(
               height: Dimension.size10,
             ),

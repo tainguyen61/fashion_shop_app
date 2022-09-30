@@ -42,18 +42,22 @@ class _HomePageControllerState extends State<HomePageController> {
         showUnselectedLabels: true,
         items: const [
           BottomNavigationBarItem(
+            activeIcon: Icon(Icons.home),
             label: 'Trang chủ',
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
           ),
           BottomNavigationBarItem(
+            activeIcon: Icon(Icons.favorite),
             label: 'Yêu thích',
-            icon: Icon(Icons.favorite),
+            icon: Icon(Icons.favorite_border),
           ),
           BottomNavigationBarItem(
+            activeIcon: Icon(Icons.chat_bubble),
             label: 'Chat',
             icon: Icon(Icons.chat_bubble_outline),
           ),
           BottomNavigationBarItem(
+            activeIcon: Icon(Icons.person),
             label: 'Tài khoản',
             icon: Icon(Icons.perm_identity_sharp),
           ),

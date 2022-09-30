@@ -1,8 +1,14 @@
+import 'package:fashion_shop_app/pages/cart/data/cart_state.dart';
+import 'package:fashion_shop_app/pages/home_page/data/homeState.dart';
+import 'package:fashion_shop_app/pages/home_page/home_page.dart';
 import 'package:fashion_shop_app/pages/home_page_controller.dart';
+import 'package:fashion_shop_app/pages/login/login_page.dart';
+import 'package:fashion_shop_app/pages/register/register_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -15,7 +21,6 @@ void main() async{
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -27,13 +32,19 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context,child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'fashion_shop_app',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider<CartState>(create: (context) => cartState),
+            ChangeNotifierProvider<HomeState>(create: (context) => homeState),
+          ],
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'fashion_shop_app',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: const HomePageController(),
           ),
-          home: const HomePageController(),
         );
       }
     );

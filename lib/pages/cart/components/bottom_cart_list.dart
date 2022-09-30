@@ -1,7 +1,10 @@
+import 'package:fashion_shop_app/pages/cart/data/cart_state.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class BottomCartList extends StatelessWidget {
   const BottomCartList({Key? key}) : super(key: key);
@@ -32,12 +35,14 @@ class BottomCartList extends StatelessWidget {
                   text: 'Tổng cộng',
                   size: Dimension.font14,
                 ),
-                BigText(
-                  text: '8.160.000 đ',
-                  color: AppColor.red,
-                  size: Dimension.font20,
-                  fontWeight: FontWeight.w700,
-                ),
+                Consumer<CartState>(builder: (context, value, child) {
+                  return BigText(
+                    text: NumberFormat.simpleCurrency(locale: 'vi-VN').format(cartState.getTotalPrice),
+                    color: AppColor.red,
+                    size: Dimension.font20,
+                    fontWeight: FontWeight.w700,
+                  );
+                },)
               ],
             ),
           ),
@@ -50,8 +55,17 @@ class BottomCartList extends StatelessWidget {
               height: Dimension.size50,
               width: double.maxFinite,
               alignment: Alignment.center,
-
-              child: BigText(text: 'Mua hàng (1)',size: Dimension.font18,color: AppColor.nearlyWhite,maxLine: 1,overflow: TextOverflow.ellipsis,),
+              child: Consumer<CartState>(
+                builder: (context, value, child) {
+                  return BigText(
+                    text: 'Mua hàng (${cartState.getCountChecked})',
+                    size: Dimension.font18,
+                    color: AppColor.nearlyWhite,
+                    maxLine: 1,
+                    overflow: TextOverflow.ellipsis,
+                  );
+                },
+              )
             ),
           ),
         ],

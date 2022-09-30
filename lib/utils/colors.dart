@@ -4,9 +4,11 @@ class AppColor{
   static const Color notWhite = Color(0xFFEDF0F2);
   static const Color nearlyWhite = Color(0xFFFFFFFF);
   static const Color nearlyBlue = Color(0xFF1A94FF);
+  static const Color mediumBlue = Color(0xFF277BC0);
   static const Color lightBlue = Color(0xFFE8F9FD);
   static const Color yellow = Color(0xFFFDD264);
   static const Color red = Color(0xFFFF3945);
+  static const Color orange = Color(0xFFFD841F);
   static const Color violet = Color(0xFFe7e2f8);
   static const Color nearlyBlack = Color(0xFF213333);
   static const Color grey = Color(0xFF3A5160);

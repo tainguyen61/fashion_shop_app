@@ -1,3 +1,4 @@
+import 'package:fashion_shop_app/models/product_model.dart';
 import 'package:fashion_shop_app/pages/home_page/components/product/product_item.dart';
 import 'package:fashion_shop_app/pages/product/product_page.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
@@ -23,7 +24,7 @@ class ProductList extends StatelessWidget {
           crossAxisSpacing: Dimension.size10,
           mainAxisSpacing: Dimension.size10,
         ),
-        itemCount: 6,
+        itemCount: productionList.length,
         itemBuilder: (context, index) {
           return ProductItem();
         },

@@ -24,6 +24,7 @@ class Dimension{
   static double size20 = 20.sp;
   static double size25 = 25.sp;
   static double size30 = 30.sp;
+  static double size32 = 32.sp;
   static double size40 = 40.sp;
   static double size42 = 42.sp;
   static double size45 = 45.sp;

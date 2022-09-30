@@ -1,3 +1,4 @@
+import 'package:fashion_shop_app/components/cart.dart';
 import 'package:fashion_shop_app/components/custom_appbar.dart';
 import 'package:fashion_shop_app/pages/favorite/components/favotite_list.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
@@ -21,12 +22,7 @@ class FavoritePage extends StatelessWidget {
           elevation: 1,
           statusBarColor: AppColor.nearlyBlue,
           action: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.shopping_cart_outlined,
-              ),
-            ),
+            Cart(),
           ]),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: Dimension.size10),

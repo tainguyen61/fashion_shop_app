@@ -1,3 +1,5 @@
+import 'package:fashion_shop_app/models/product_model.dart';
+import 'package:fashion_shop_app/pages/cart/data/cart_state.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
@@ -48,21 +50,44 @@ class BottomProduct extends StatelessWidget {
             ),
           ),
           Flexible(
-            flex: 8,
+            flex: 2,
             child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimension.radius5),
-                color: AppColor.red,
-              ),
               height: Dimension.size50,
-              width: double.maxFinite,
-              alignment: Alignment.center,
-              child: BigText(
-                text: 'Chọn mua',
-                size: Dimension.font18,
-                color: AppColor.nearlyWhite,
-                maxLine: 1,
-                overflow: TextOverflow.ellipsis,
+              width: Dimension.size50,
+              padding: EdgeInsets.symmetric(horizontal: Dimension.size10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimension.radius5),
+                  border: Border.all(
+                    color: AppColor.nearlyBlue,
+                  )),
+              child: Icon(
+                Icons.favorite_border,
+                size: Dimension.iconSize24,
+                color: AppColor.nearlyBlue,
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 6,
+            child: InkWell(
+              onTap: (){
+                cartState.addProduct(ProductModel(id: 1, img: 'assets/images/img1.jpg', name: 'Sản phẩm 1', price: 250000),);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimension.radius5),
+                  color: AppColor.red,
+                ),
+                height: Dimension.size50,
+                width: double.maxFinite,
+                alignment: Alignment.center,
+                child: BigText(
+                  text: 'Chọn mua',
+                  size: Dimension.font18,
+                  color: AppColor.nearlyWhite,
+                  maxLine: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
           ),
