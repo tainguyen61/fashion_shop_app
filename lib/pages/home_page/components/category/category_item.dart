@@ -1,9 +1,11 @@
+import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({Key? key}) : super(key: key);
+  String name;
+  CategoryItem({Key? key,required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +17,9 @@ class CategoryItem extends StatelessWidget {
               vertical: Dimension.size10,
               horizontal: Dimension.size10),
           child: BigText(
-            text: 'Thời trang nam',
+            text: name,
             size: Dimension.font14,
+            color: AppColor.nearlyBlack,
           )),
     );
   }

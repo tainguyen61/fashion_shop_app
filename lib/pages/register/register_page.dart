@@ -5,6 +5,7 @@ import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -16,6 +17,9 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool _obscureText = true;
   final formKey = GlobalKey<FormState>();
+
+  late CollectionReference users;
+  String? idUser = "";
   String name = "";
   String phone = "";
   String email = "";
@@ -30,6 +34,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    users = FirebaseFirestore.instance.collection('users');
+
     return Scaffold(
       backgroundColor: AppColor.nearlyWhite,
       appBar: CustomAppBar(
@@ -165,9 +172,12 @@ class _RegisterPageState extends State<RegisterPage> {
                             UserCredential userCredential = await FirebaseAuth
                                 .instance
                                 .createUserWithEmailAndPassword(
-                                    email: email, password: password);
+                                    email: email, password: password,);
+                            idUser =userCredential.user?.uid;
                             print(
-                                'UserCredential ${userCredential.user?.email}');
+                                'UserCredential ${userCredential.user?.uid}');
+
+
                             showDialog(
                               context: context,
                               builder: (context) {

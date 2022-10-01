@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_shop_app/components/cart.dart';
 import 'package:fashion_shop_app/components/custom_appbar.dart';
 import 'package:fashion_shop_app/pages/cart/cart_page.dart';

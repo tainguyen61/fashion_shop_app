@@ -1,4 +1,7 @@
+import 'package:fashion_shop_app/models/product_state.dart';
+import 'package:fashion_shop_app/models/test_page.dart';
 import 'package:fashion_shop_app/pages/cart/data/cart_state.dart';
+import 'package:fashion_shop_app/pages/home_page/components/category/data/category_state.dart';
 import 'package:fashion_shop_app/pages/home_page/data/homeState.dart';
 import 'package:fashion_shop_app/pages/home_page/home_page.dart';
 import 'package:fashion_shop_app/pages/home_page_controller.dart';
@@ -36,6 +39,7 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider<CartState>(create: (context) => cartState),
             ChangeNotifierProvider<HomeState>(create: (context) => homeState),
+            ChangeNotifierProvider<CategoryState>(create: (context) => categoryState),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
