@@ -54,6 +54,6 @@ class Dimension{
   static double iconSize32 = 32.sp;
 
   //panel
-  static double panel120 = 120.sp;
+  static double panel160 = 160.sp;
   static double panel200 = 220.sp;
 }

@@ -1,8 +1,10 @@
-import 'package:fashion_shop_app/models/product_state.dart';
+import 'package:fashion_shop_app/models/product_model_test.dart';
+import 'package:fashion_shop_app/states/panel_state.dart';
+import 'package:fashion_shop_app/states/product_state.dart';
 import 'package:fashion_shop_app/models/test_page.dart';
-import 'package:fashion_shop_app/pages/cart/data/cart_state.dart';
-import 'package:fashion_shop_app/pages/home_page/components/category/data/category_state.dart';
-import 'package:fashion_shop_app/pages/home_page/data/homeState.dart';
+import 'package:fashion_shop_app/states/cart_state.dart';
+import 'package:fashion_shop_app/states/category_state.dart';
+import 'package:fashion_shop_app/states/userState.dart';
 import 'package:fashion_shop_app/pages/home_page/home_page.dart';
 import 'package:fashion_shop_app/pages/home_page_controller.dart';
 import 'package:fashion_shop_app/pages/login/login_page.dart';
@@ -38,8 +40,10 @@ class MyApp extends StatelessWidget {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider<CartState>(create: (context) => cartState),
-            ChangeNotifierProvider<HomeState>(create: (context) => homeState),
+            ChangeNotifierProvider<UserState>(create: (context) => userState),
             ChangeNotifierProvider<CategoryState>(create: (context) => categoryState),
+            ChangeNotifierProvider<ProductState>(create: (context) => productState),
+            ChangeNotifierProvider<PanelState>(create: (context) => panelState),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

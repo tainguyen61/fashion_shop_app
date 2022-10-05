@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:fashion_shop_app/components/custom_appbar.dart';
 import 'package:fashion_shop_app/pages/account/account.dart';
-import 'package:fashion_shop_app/pages/home_page/data/homeState.dart';
+import 'package:fashion_shop_app/states/userState.dart';
 import 'package:fashion_shop_app/pages/home_page/home_page.dart';
 import 'package:fashion_shop_app/pages/home_page_controller.dart';
 import 'package:fashion_shop_app/pages/register/register_page.dart';
@@ -23,12 +24,13 @@ class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
   String email = "";
   String password = "";
-
+  late CollectionReference users;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+     users = FirebaseFirestore.instance.collection('users');
     return Scaffold(
       backgroundColor: AppColor.nearlyWhite,
       appBar: CustomAppBar(
@@ -115,14 +117,14 @@ class _LoginPageState extends State<LoginPage> {
                                 .instance
                                 .signInWithEmailAndPassword(
                                     email: email, password: password);
+                            String? userId = userCredential.user?.uid.toString();
 
-                            String? _userID = await userCredential.user?.uid;
                             // YDRwGEXmr9gnWjsATiOSN3ZuwuC2
-                            print('UID: $_userID');
-
+                            print('id: ${userId}');
                             print(
                                 'Sign in successfully - UserCredential ${userCredential.user?.email}');
-                            homeState.login();
+                            userState.getUserInfo(userId!);
+                            userState.login();
                             Navigator.pop(context);
                             // Navigator.push(
                             //   context,

@@ -5,4 +5,6 @@ class CartItemModel{
   bool isChecked;
   int count;
   CartItemModel({required this.productModel, this.isChecked = false, this.count = 1});
+
+  get subTotal => productModel.price*count;
 }

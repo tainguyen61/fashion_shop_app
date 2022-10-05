@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class ProductTestModel {
   String describle;
   String idcategory;
@@ -27,4 +29,7 @@ class ProductTestModel {
         rating = snapshot.data()['rating'],
         sex = snapshot.data()['sex'],
         sold = snapshot.data()['sold'];
+
+  
+
 }

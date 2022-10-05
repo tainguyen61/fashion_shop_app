@@ -3,18 +3,56 @@ import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class ProductItem extends StatelessWidget {
-  const ProductItem({Key? key}) : super(key: key);
+class ProductItem extends StatefulWidget {
+  String id;
+  String describle;
+  String idcategory;
+  String img;
+  String name;
+  int price;
+  double rating;
+  String sex;
+  int sold;
 
+  ProductItem(
+      {Key? key,
+      required this.id,
+      required this.describle,
+      required this.idcategory,
+      required this.img,
+      required this.name,
+      required this.price,
+      required this.rating,
+      required this.sex,
+      required this.sold})
+      : super(key: key);
+
+  @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const ProductPage(),
-          ),);
+            builder: (context) => ProductPage(
+              id: widget.id,
+              name: widget.name,
+              describle: widget.describle,
+              idcategory: widget.idcategory,
+              img: widget.img,
+              price: widget.price,
+              rating: widget.rating,
+              sex: widget.sex,
+              sold: widget.sold,
+            ),
+          ),
+        );
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(Dimension.radius5),
@@ -30,10 +68,7 @@ class ProductItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColor.nearlyWhite,
                   image: DecorationImage(
-                      image: AssetImage(
-                        'assets/images/img1.jpg',
-                      ),
-                      fit: BoxFit.fill),
+                      image: NetworkImage(widget.img), fit: BoxFit.fill),
                 ),
               ),
               Padding(
@@ -42,7 +77,7 @@ class ProductItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(
-                      text: '79.000đ',
+                      text: NumberFormat.simpleCurrency(locale: 'vi-VN').format(widget.price),
                       size: Dimension.font16,
                       color: AppColor.red,
                       fontWeight: FontWeight.w700,
@@ -51,8 +86,7 @@ class ProductItem extends StatelessWidget {
                       height: Dimension.size5,
                     ),
                     BigText(
-                      text:
-                      'Chai xịt bọt vệ sinh giày Snoker - hàng cao cấp 300 ml',
+                      text: widget.name,
                       maxLine: 2,
                       size: Dimension.font12,
                       overflow: TextOverflow.ellipsis,
@@ -63,7 +97,7 @@ class ProductItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         BigText(
-                          text: '4.7',
+                          text: widget.rating.toString(),
                           size: Dimension.font12,
                           color: AppColor.lightText,
                         ),
@@ -78,7 +112,7 @@ class ProductItem extends StatelessWidget {
                           color: AppColor.lightText,
                         ),
                         BigText(
-                          text: 'Đã bán 1242',
+                          text: 'Đã bán ${widget.sold.toString()}',
                           color: AppColor.lightText,
                           size: Dimension.font12,
                         ),

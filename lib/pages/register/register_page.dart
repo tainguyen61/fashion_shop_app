@@ -176,8 +176,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             idUser =userCredential.user?.uid;
                             print(
                                 'UserCredential ${userCredential.user?.uid}');
-
-
+                            await users.doc(userCredential.user?.uid).collection('information').add({
+                                  'name':name,
+                              'phone':phone,
+                              'email':email,
+                              'address':address
+                                }).then((value) => print("User Added"))
+                                .catchError((error) => print("Failed to add user: $error"));
+      
                             showDialog(
                               context: context,
                               builder: (context) {

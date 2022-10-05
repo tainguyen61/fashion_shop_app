@@ -1,5 +1,6 @@
+
 import 'package:fashion_shop_app/models/product_model_test.dart';
-import 'package:fashion_shop_app/models/product_state.dart';
+import 'package:fashion_shop_app/states/product_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

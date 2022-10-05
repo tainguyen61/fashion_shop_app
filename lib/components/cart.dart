@@ -1,5 +1,5 @@
 import 'package:fashion_shop_app/pages/cart/cart_page.dart';
-import 'package:fashion_shop_app/pages/cart/data/cart_state.dart';
+import 'package:fashion_shop_app/states/cart_state.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';

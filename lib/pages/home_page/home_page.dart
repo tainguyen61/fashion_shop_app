@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_shop_app/components/cart.dart';
 import 'package:fashion_shop_app/components/custom_appbar.dart';
+import 'package:fashion_shop_app/states/panel_state.dart';
+import 'package:fashion_shop_app/states/product_state.dart';
 import 'package:fashion_shop_app/pages/cart/cart_page.dart';
-import 'package:fashion_shop_app/pages/cart/data/cart_state.dart';
+import 'package:fashion_shop_app/states/cart_state.dart';
+import 'package:fashion_shop_app/states/category_state.dart';
 import 'package:fashion_shop_app/pages/home_page/components/category/list_category.dart';
 import 'package:fashion_shop_app/pages/home_page/components/deal/deal_list.dart';
 import 'package:fashion_shop_app/pages/home_page/components/panel/panel_list.dart';
@@ -58,59 +61,66 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CategoryList(),
-            SizedBox(
-              height: Dimension.size10,
-            ),
-            PanelList(),
-            // SizedBox(
-            //   height: Dimension.size10,
-            // ),
-            // DealList(),
-            SizedBox(
-              height: Dimension.size10,
-            ),
-            Container(
-              padding: EdgeInsets.all(Dimension.size15),
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: AppColor.nearlyWhite,
+      body: RefreshIndicator(
+        onRefresh: () async {
+          categoryState.getCategoryList();
+          panelState.getCategoryList();
+          productState.getProductList();
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CategoryList(),
+              SizedBox(
+                height: Dimension.size10,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  BigText(
-                    text: 'Phổ biến',
-                    size: Dimension.font14,
-                    fontWeight: FontWeight.w500,
-                    color: AppColor.nearlyBlue,
-                  ),
-                  BigText(
-                    text: 'Bán chạy',
-                    size: Dimension.font14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  BigText(
-                    text: 'Hàng mới',
-                    size: Dimension.font14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  BigText(
-                    text: 'Giá',
-                    size: Dimension.font14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ],
+              PanelList(),
+              // SizedBox(
+              //   height: Dimension.size10,
+              // ),
+              // DealList(),
+              SizedBox(
+                height: Dimension.size10,
               ),
-            ),
-            ProductList(),
-          ],
+              Container(
+                padding: EdgeInsets.all(Dimension.size15),
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: AppColor.nearlyWhite,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    BigText(
+                      text: 'Phổ biến',
+                      size: Dimension.font14,
+                      fontWeight: FontWeight.w500,
+                      color: AppColor.nearlyBlue,
+                    ),
+                    BigText(
+                      text: 'Bán chạy',
+                      size: Dimension.font14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    BigText(
+                      text: 'Hàng mới',
+                      size: Dimension.font14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    BigText(
+                      text: 'Giá',
+                      size: Dimension.font14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ],
+                ),
+              ),
+              ProductList(),
+            ],
+          ),
         ),
-      ),
+      )
     );
   }
 }

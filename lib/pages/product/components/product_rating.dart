@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductRating extends StatelessWidget {
-  const ProductRating({Key? key}) : super(key: key);
+  double rating;
+  ProductRating({Key? key,required this.rating}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class ProductRating extends StatelessWidget {
           Row(
             children: [
               BigText(
-                text: '4.5',
+                text: rating.toString(),
                 size: Dimension.font32,
               ),
               SizedBox(

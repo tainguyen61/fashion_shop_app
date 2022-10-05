@@ -1,4 +1,4 @@
-import 'package:fashion_shop_app/pages/home_page/data/homeState.dart';
+import 'package:fashion_shop_app/states/userState.dart';
 import 'package:fashion_shop_app/pages/login/login_page.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
@@ -59,59 +59,9 @@ class _UserCardState extends State<UserCard> {
                 SizedBox(
                   width: Dimension.size5,
                 ),
-                Consumer<HomeState>(builder: (context, value, child) {
+                Consumer<UserState>(builder: (context, value, child) {
                   return Flexible(
-                    child: homeState.getCheckLogin ? Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BigText(
-                          text: 'Nguyễn Phát Tài ',
-                          size: Dimension.font18,
-                          maxLine: 2,
-                          overflow: TextOverflow.ellipsis,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        SizedBox(
-                          height: Dimension.size5,
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: Dimension.size5,
-                            vertical: Dimension.size3,
-                          ),
-                          decoration: BoxDecoration(
-                              color: AppColor.violet,
-                              borderRadius: BorderRadius.circular(
-                                  Dimension.radius30)),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.ac_unit,
-                                color: AppColor.nearlyBlue,
-                                size: Dimension.iconSize16,
-                              ),
-                              BigText(
-                                text: 'Thành viên',
-                                size: Dimension.font12,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: Dimension.size4,
-                        ),
-                        BigText(
-                          text: 'Địa chỉ: Vĩnh Long',
-                          size: Dimension.font12,
-                          maxLine: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ) :
+                    child: userState.userInfo.isEmpty ?
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,8 +77,8 @@ class _UserCardState extends State<UserCard> {
                           height: Dimension.size5,
                         ),
                         InkWell(
-                          onTap: (){
-                            Navigator.of(context).push(
+                          onTap: () async {
+                            await Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => const LoginPage(),
                               ),
@@ -148,7 +98,58 @@ class _UserCardState extends State<UserCard> {
                           ),
                         )
                       ],
-                    ),
+                    ) :
+                    Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BigText(
+                        text: userState.userInfo[0].name,
+                        size: Dimension.font18,
+                        maxLine: 2,
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      SizedBox(
+                        height: Dimension.size5,
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: Dimension.size5,
+                          vertical: Dimension.size3,
+                        ),
+                        decoration: BoxDecoration(
+                            color: AppColor.violet,
+                            borderRadius: BorderRadius.circular(
+                                Dimension.radius30)),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.ac_unit,
+                              color: AppColor.nearlyBlue,
+                              size: Dimension.iconSize16,
+                            ),
+                            BigText(
+                              text: 'Thành viên',
+                              size: Dimension.font12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: Dimension.size4,
+                      ),
+                      BigText(
+                        text: 'Địa chỉ: ${userState.userInfo[0].address}',
+                        size: Dimension.font12,
+                        maxLine: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  )
                   );
                 },
                 )

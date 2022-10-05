@@ -1,12 +1,30 @@
 import 'package:fashion_shop_app/models/product_model.dart';
-import 'package:fashion_shop_app/pages/cart/data/cart_state.dart';
+import 'package:fashion_shop_app/states/cart_state.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
 
 class BottomProduct extends StatelessWidget {
-  const BottomProduct({Key? key}) : super(key: key);
+  String id;
+  String describle;
+  String idcategory;
+  String img;
+  String name;
+  int price;
+  double rating;
+  String sex;
+  int sold;
+  BottomProduct({Key? key,
+    required this.id,
+    required this.describle,
+    required this.idcategory,
+    required this.img,
+    required this.name,
+    required this.price,
+    required this.rating,
+    required this.sex,
+    required this.sold}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +89,11 @@ class BottomProduct extends StatelessWidget {
             flex: 6,
             child: InkWell(
               onTap: (){
-                cartState.addProduct(ProductModel(id: 1, img: 'assets/images/img1.jpg', name: 'Sản phẩm 1', price: 250000),);
-              },
+                cartState.addProduct(ProductModel(id: id, describle: describle, idcategory: idcategory, img: img, name: name, price: price, rating: rating, sex: sex, sold: sold),);
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("Sản phẩm đã được thêm vào giỏ hàng!"),
+                ),);
+                },
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimension.radius5),

@@ -1,12 +1,39 @@
-class ProductModel{
-  final int id;
-  final String img;
-  final String name;
-  final double price;
+import 'dart:convert';
 
-  ProductModel({required this.id, required this.img, required this.name, required this.price});
+class ProductModel {
+  String id;
+  String describle;
+  String idcategory;
+  String img;
+  String name;
+  int price;
+  double rating;
+  String sex;
+  int sold;
+
+  ProductModel(
+      {
+        required this.id,
+        required this.describle,
+        required this.idcategory,
+        required this.img,
+        required this.name,
+        required this.price,
+        required this.rating,
+        required this.sex,
+        required this.sold});
+
+  ProductModel.fromSnapshot(snapshot)
+      : id = snapshot.id,
+        describle = snapshot.data()['describle'],
+        idcategory = snapshot.data()['idcategory'],
+        img = snapshot.data()['img'],
+        name = snapshot.data()['name'],
+        price = snapshot.data()['price'],
+        rating = snapshot.data()['rating'],
+        sex = snapshot.data()['sex'],
+        sold = snapshot.data()['sold'].toInt();
+
+
+
 }
-List<ProductModel> productionList = [
-  for(int i = 0; i<5 ;i++)
-    ProductModel(id: i, img: 'assets/images/img1.jpg', name: 'Sản phẩm ${i}', price: 250000),
-];

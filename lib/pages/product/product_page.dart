@@ -14,8 +14,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+// ignore: must_be_immutable
 class ProductPage extends StatefulWidget {
-  const ProductPage({Key? key}) : super(key: key);
+  String id;
+  String describle;
+  String idcategory;
+  String img;
+  String name;
+  int price;
+  double rating;
+  String sex;
+  int sold;
+  ProductPage({Key? key,
+    required this.id,
+    required this.describle,
+    required this.idcategory,
+    required this.img,
+    required this.name,
+    required this.price,
+    required this.rating,
+    required this.sex,
+    required this.sold}) : super(key: key);
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -30,6 +49,7 @@ class _ProductPageState extends State<ProductPage>
 
   @override
   void initState() {
+
     _ColorAnimationController =
         AnimationController(vsync: this, duration: Duration(seconds: 0));
     _colorTween =
@@ -74,16 +94,22 @@ class _ProductPageState extends State<ProductPage>
               SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    ImageList(),
-                    ProductDetail(),
+                    ImageList(img: widget.img),
+                    ProductDetail(
+                      sold: widget.sold,
+                      rating: widget.rating,
+                      price: widget.price,
+                      name: widget.name,
+
+                    ),
                     SizedBox(
                       height: Dimension.size10,
                     ),
-                    ProductDescribe(),
+                    ProductDescribe(describe: widget.describle),
                     SizedBox(
                       height: Dimension.size10,
                     ),
-                    ProductRating(),
+                    ProductRating(rating: widget.rating),
                     UserRatingList(),
                   ],
                 ),
@@ -157,7 +183,17 @@ class _ProductPageState extends State<ProductPage>
           ),
         ),
       ),
-      bottomNavigationBar: BottomProduct(),
+      bottomNavigationBar: BottomProduct(
+        id: widget.id,
+        name: widget.name,
+        rating: widget.rating,
+        sold: widget.sold,
+        sex: widget.sex,
+        price: widget.price,
+        img: widget.img,
+        idcategory: widget.idcategory,
+        describle: widget.describle,
+      ),
     );
   }
 }

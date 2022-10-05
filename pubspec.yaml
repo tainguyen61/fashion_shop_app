@@ -44,6 +44,8 @@ dependencies:
   intl:
   email_validator: ^2.1.17
   cloud_firestore: ^3.5.0
+  fluttertoast: ^8.0.9
+  toast: ^0.3.0
 
 dev_dependencies:
   flutter_test:

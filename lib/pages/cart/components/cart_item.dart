@@ -1,4 +1,4 @@
-import 'package:fashion_shop_app/pages/cart/data/cart_state.dart';
+import 'package:fashion_shop_app/states/cart_state.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
@@ -9,10 +9,10 @@ import 'package:provider/provider.dart';
 
 class CartItem extends StatelessWidget {
   final int index;
-  final int id;
+  final String id;
   final String img;
   final String name;
-  final double price;
+  final int price;
   final bool isChecked;
   final int count;
   CartItem({Key? key,required this.isChecked, required this.id, required this.img, required this.name, required this.price, required this.index, required this.count}) : super(key: key);
@@ -47,7 +47,7 @@ class CartItem extends StatelessWidget {
               width: Dimension.size80,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/img1.jpg'),
+                    image: NetworkImage(img),
                   )),
             ),
           ),
@@ -73,7 +73,7 @@ class CartItem extends StatelessWidget {
                     ),
                     SizedBox(height: Dimension.size5,),
                     BigText(
-                      text: NumberFormat.simpleCurrency(locale: 'vi-VN').format(price),
+                      text: NumberFormat.simpleCurrency(locale: 'vi-VN').format(cartState.cartList[index].subTotal),
                       fontWeight: FontWeight.w500,
                       size: Dimension.font18,
                       color: AppColor.red,
