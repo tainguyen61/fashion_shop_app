@@ -6,6 +6,7 @@ import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -169,6 +170,18 @@ class _RegisterPageState extends State<RegisterPage> {
 
                         if (formKey.currentState!.validate()) {
                           try {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Container(
+                                    height: 100.sp,
+                                    alignment: Alignment.center,
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                );
+                              },
+                            );
                             UserCredential userCredential = await FirebaseAuth
                                 .instance
                                 .createUserWithEmailAndPassword(
@@ -180,10 +193,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                   'name':name,
                               'phone':phone,
                               'email':email,
-                              'address':address
+                              'address':address,
+                              'image': "",
                                 }).then((value) => print("User Added"))
                                 .catchError((error) => print("Failed to add user: $error"));
-      
+                            Navigator.pop(context);
                             showDialog(
                               context: context,
                               builder: (context) {

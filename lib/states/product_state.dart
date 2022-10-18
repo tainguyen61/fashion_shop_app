@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class ProductState extends ChangeNotifier{
   List<ProductModel> productList = [];
 
-  void getProductList() async {
+  Future getProductList() async {
     var data = await FirebaseFirestore.instance.collection('products').get();
     productList = List.from(data.docs.map((doc) => ProductModel.fromSnapshot(doc)));
     notifyListeners();

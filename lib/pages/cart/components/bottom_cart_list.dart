@@ -105,9 +105,7 @@ class BottomCartList extends StatelessWidget {
                                         formatterTime.format(now);
                                     String time = actualDate + ' ' + actualTime;
                                     cartState.addBill(
-                                        userState.userInfo[0].id.toString(),
-                                        time,
-                                        userState.userInfo[0].address,);
+                                        time);
                                     Navigator.pop(context);
                                   },
                                   child: const Text('Ok')),

@@ -17,11 +17,13 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.yellow,
+      // backgroundColor: Colors.yellow
       appBar: CustomAppBar(
         backgroundColor: AppColor.nearlyBlue,
         elevation: 0,
         statusBarColor: AppColor.nearlyBlue,
+        title: BigText(text: 'Tài khoản',color: AppColor.nearlyWhite,size: Dimension.font18,),
+        centerTitle: true,
         action: [
           Cart(),
         ],
@@ -51,9 +53,10 @@ class AccountPage extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: Dimension.size10),
+                  padding: EdgeInsets.symmetric(vertical: Dimension.size5),
                   margin: EdgeInsets.symmetric(horizontal: Dimension.size16,vertical: Dimension.size16),
                   decoration: BoxDecoration(
+                    color: AppColor.nearlyWhite,
                     borderRadius: BorderRadius.circular(Dimension.radius5),
                     border: Border.all(
                       width: 1,

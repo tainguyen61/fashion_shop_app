@@ -1,3 +1,4 @@
+import 'package:fashion_shop_app/pages/account/components/components/my_bill.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
@@ -53,31 +54,7 @@ class Bill extends StatelessWidget {
                             size: Dimension.iconSize32,
                           )),
                       BigText(
-                        text: 'Chờ thanh toán',
-                        size: Dimension.font12,
-                        maxLine: 2,
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  width: Dimension.size80,
-                  child: Column(
-                    children: [
-                      Container(
-                          padding: EdgeInsets.all(Dimension.size5),
-                          decoration: BoxDecoration(
-                              color: AppColor.lightBlue,
-                              borderRadius: BorderRadius.circular(
-                                  Dimension.radius20)),
-                          child: Icon(
-                            Icons.account_balance_wallet_outlined,
-                            color: AppColor.nearlyBlue,
-                            size: Dimension.iconSize32,
-                          )),
-                      BigText(
-                        text: 'Đăng xử lý',
+                        text: 'Đang xử lý',
                         size: Dimension.font12,
                         maxLine: 2,
                         textAlign: TextAlign.center,
@@ -131,6 +108,35 @@ class Bill extends StatelessWidget {
                         textAlign: TextAlign.center,
                       )
                     ],
+                  ),
+                ),
+                InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const MyBill(),));
+                  },
+                  child: Container(
+                    width: Dimension.size80,
+                    child: Column(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.all(Dimension.size5),
+                            decoration: BoxDecoration(
+                                color: AppColor.lightBlue,
+                                borderRadius: BorderRadius.circular(
+                                    Dimension.radius20)),
+                            child: Icon(
+                              Icons.account_balance_wallet_outlined,
+                              color: AppColor.nearlyBlue,
+                              size: Dimension.iconSize32,
+                            )),
+                        BigText(
+                          text: 'Đã hủy',
+                          size: Dimension.font12,
+                          maxLine: 2,
+                          textAlign: TextAlign.center,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],

@@ -113,6 +113,18 @@ class _LoginPageState extends State<LoginPage> {
 
                         if (formKey.currentState!.validate()) {
                           try {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Container(
+                                    height: Dimension.size100,
+                                    alignment: Alignment.center,
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                );
+                              },
+                            );
                             UserCredential userCredential = await FirebaseAuth
                                 .instance
                                 .signInWithEmailAndPassword(
@@ -126,16 +138,10 @@ class _LoginPageState extends State<LoginPage> {
                             userState.getUserInfo(userId!);
                             userState.login();
                             Navigator.pop(context);
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) {
-                            //       return const HomePageController();
-                            //     },
-                            //   ),
-                            // );
+                            Navigator.pop(context);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
+                              Navigator.pop(context);
                               showDialog(
                                 context: context,
                                 builder: (context) {
@@ -157,6 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                               );
                             } else if (e.code == 'wrong-password') {
+                              Navigator.pop(context);
                               showDialog(
                                 context: context,
                                 builder: (context) {

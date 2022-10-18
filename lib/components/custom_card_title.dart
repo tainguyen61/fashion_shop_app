@@ -5,10 +5,10 @@ import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomCardTitle extends StatelessWidget {
-  String title;
-  String subTitle;
+  List<Widget> content;
   Icon icon;
-  CustomCardTitle({Key? key,required this.title,required this.subTitle, required this.icon}) : super(key: key);
+  Icon? leadingIcon;
+  CustomCardTitle({Key? key,required this.content , required this.icon, this.leadingIcon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,37 +18,42 @@ class CustomCardTitle extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Icon(
-                icon.icon,
-              ),
-              SizedBox(
-                width: Dimension.size5,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BigText(
-                    text: title,
-                    size: Dimension.font14,
-                    fontWeight: FontWeight.w500,
+          Flexible(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  icon.icon,
+                ),
+                SizedBox(
+                  width: Dimension.size5,
+                ),
+                Flexible(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: content,
+                    // [
+
+                      // BigText(
+                      //   text: title,
+                      //   size: Dimension.font14,
+                      //   fontWeight: FontWeight.w500,
+                      // ),
+                      // BigText(
+                      //   text: subTitle,
+                      //   size: Dimension.font16,
+                      //   overflow: TextOverflow.ellipsis,
+                      //   maxLine: 1,
+                      // ),
+                    // ],
                   ),
-                  BigText(
-                    text: subTitle,
-                    size: Dimension.font16,
-                  )
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
-          Icon(
-            Icons.chevron_right,
-            size: Dimension.iconSize32,
-            color: AppColor.mediumGrey,
-          ),
+          leadingIcon != null ? Icon(leadingIcon!.icon) : Container(),
         ],
       ),
     );

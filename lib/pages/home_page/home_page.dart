@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_shop_app/components/cart.dart';
 import 'package:fashion_shop_app/components/custom_appbar.dart';
+import 'package:fashion_shop_app/states/bill_state.dart';
 import 'package:fashion_shop_app/states/panel_state.dart';
 import 'package:fashion_shop_app/states/product_state.dart';
 import 'package:fashion_shop_app/pages/cart/cart_page.dart';
@@ -37,7 +38,6 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Cart(),
-
         ],
         title: ClipRRect(
           borderRadius: BorderRadius.circular(Dimension.radius5),
