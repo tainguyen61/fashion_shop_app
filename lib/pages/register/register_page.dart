@@ -35,7 +35,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-
     users = FirebaseFirestore.instance.collection('users');
 
     return Scaffold(
@@ -47,9 +46,13 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         backgroundColor: AppColor.nearlyWhite,
         elevation: 1,
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back),color: AppColor.nearlyBlack,),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back),
+          color: AppColor.nearlyBlack,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -185,18 +188,27 @@ class _RegisterPageState extends State<RegisterPage> {
                             UserCredential userCredential = await FirebaseAuth
                                 .instance
                                 .createUserWithEmailAndPassword(
-                                    email: email, password: password,);
-                            idUser =userCredential.user?.uid;
-                            print(
-                                'UserCredential ${userCredential.user?.uid}');
-                            await users.doc(userCredential.user?.uid).collection('information').add({
-                                  'name':name,
-                              'phone':phone,
-                              'email':email,
-                              'address':address,
-                              'image': "",
-                                }).then((value) => print("User Added"))
-                                .catchError((error) => print("Failed to add user: $error"));
+                              email: email,
+                              password: password,
+                            );
+                            idUser = userCredential.user?.uid;
+                            print('UserCredential ${userCredential.user?.uid}');
+                            await users
+                                .doc(userCredential.user?.uid)
+                                .collection('information')
+                                .add({
+                                  'auth': 'user',
+                                  'name': name,
+                                  'phone': phone,
+                                  'email': email,
+                                  'address': address,
+                                  'image': "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
+                                })
+                                .then((value) => {
+                                      print('User Added'),
+                                    })
+                                .catchError((error) =>
+                                    print("Failed to add user: $error"));
                             Navigator.pop(context);
                             showDialog(
                               context: context,
@@ -207,11 +219,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                     size: Dimension.size16,
                                     color: AppColor.nearlyBlack,
                                   ),
-                                  content: Text('Đăng ký tài khoản thành công!'),
+                                  content:
+                                      Text('Đăng ký tài khoản thành công!'),
                                   actions: [
-                                    TextButton(onPressed: (){
-                                      Navigator.pop(context);
-                                    }, child: const Text('Ok')),
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('Ok')),
                                   ],
                                 );
                               },
@@ -220,6 +235,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             if (e.code == 'weak-password') {
                               print('The password provided is too weak.');
                             } else if (e.code == 'email-already-in-use') {
+                              Navigator.pop(context);
                               showDialog(
                                 context: context,
                                 builder: (context) {
@@ -229,11 +245,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                       size: Dimension.size16,
                                       color: AppColor.nearlyBlack,
                                     ),
-                                    content: Text('Tài khoản này đã có người sử dụng!'),
+                                    content: Text(
+                                        'Tài khoản này đã có người sử dụng!'),
                                     actions: [
-                                      TextButton(onPressed: (){
-                                        Navigator.pop(context);
-                                      }, child: const Text('Ok')),
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text('Ok')),
                                     ],
                                   );
                                 },

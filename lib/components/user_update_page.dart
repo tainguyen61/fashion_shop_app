@@ -59,8 +59,7 @@ class UserUpdatePage extends StatelessWidget {
                     );
                   },
                 );
-                var information = await FirebaseFirestore.instance.collection('users').doc(userState.userInfo[0].id).collection('information').get();
-                var id = information.docs[0].id;
+                var id = await userState.getIdInformation();
                  FirebaseFirestore.instance.collection('users').doc(userState.userInfo[0].id).collection('information').doc(id).update(
                      {
                      '${content}' : _contentController.text,

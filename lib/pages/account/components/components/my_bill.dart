@@ -9,7 +9,8 @@ import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
 
 class MyBill extends StatefulWidget {
-  const MyBill({Key? key}) : super(key: key);
+  int index;
+  MyBill({Key? key,required this.index}) : super(key: key);
 
   @override
   State<MyBill> createState() => _MyBillState();
@@ -21,6 +22,7 @@ class _MyBillState extends State<MyBill> with SingleTickerProviderStateMixin {
     TabController _tabController = TabController(
       length: 5,
       vsync: this,
+      initialIndex: widget.index,
     );
     return DefaultTabController(
       length: 5,

@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_shop_app/pages/account/components/components/bill_detail_page.dart';
+import 'package:fashion_shop_app/states/bill_state.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
@@ -30,8 +32,8 @@ class BillItem extends StatelessWidget {
       required this.time,
       required this.status,
       required this.address,
-        required this.userName,
-        required this.userPhone})
+      required this.userName,
+      required this.userPhone})
       : super(key: key);
 
   @override
@@ -175,6 +177,36 @@ class BillItem extends StatelessWidget {
               ),
               status == 'Đang xử lý'
                   ? Flexible(
+                    child: InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: BigText(
+                                text: 'Thông báo',
+                                size: Dimension.size16,
+                                color: AppColor.nearlyBlack,
+                              ),
+                              content: Text('Bạn có chắc muốn hủy đơn hàng?'),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Hủy')),
+                                TextButton(
+                                    onPressed: () async {
+                                      billState.billCancel(id,context);
+                                      billState.billProcressingList.clear();
+                                      billState.getBillProcressing();
+                                    },
+                                    child: const Text('Có')),
+                              ],
+                            );
+                          },
+                        );
+                      },
                       child: Container(
                         width: double.maxFinite,
                         margin:
@@ -193,7 +225,8 @@ class BillItem extends StatelessWidget {
                           color: AppColor.red,
                         ),
                       ),
-                    )
+                    ),
+                  )
                   : Flexible(
                       child: Container(
                         width: double.maxFinite,

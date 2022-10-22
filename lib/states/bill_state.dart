@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_shop_app/states/userState.dart';
+import 'package:fashion_shop_app/utils/colors.dart';
+import 'package:fashion_shop_app/utils/dimension.dart';
+import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../models/bill_detail_model.dart';
 
@@ -24,6 +28,71 @@ class BillState extends ChangeNotifier{
       });
     });
     notifyListeners();
+  }
+
+  void billCancel(String id,context)async{
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Container(
+            height: 100.sp,
+            alignment: Alignment.center,
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+    );
+    await FirebaseFirestore.instance.collection('users').doc(userState.userInfo[0].id.toString()).collection('bill_detail').doc(id).update({
+      'status':'Đã hủy',
+    }).then((value) {
+      Navigator.pop(context);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: BigText(
+              text: 'Thông báo',
+              size: Dimension.size16,
+              color: AppColor.nearlyBlack,
+            ),
+            content:
+            Text('Hủy đơn hàng thành công!'),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Ok')),
+            ],
+          );
+        },
+      );
+    }).catchError((error){
+      Navigator.pop(context);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: BigText(
+              text: 'Thông báo',
+              size: Dimension.size16,
+              color: AppColor.nearlyBlack,
+            ),
+            content:
+            Text('Đã có lỗi xảy ra, vui lòng thử lại sau!'),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Ok')),
+            ],
+          );
+        },
+      );
+    });
   }
 
   Future getBillProcressing() async {

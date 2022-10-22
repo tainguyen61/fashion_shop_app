@@ -1,12 +1,15 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_shop_app/components/cart.dart';
+import 'package:fashion_shop_app/models/product_model.dart';
 import 'package:fashion_shop_app/pages/product/components/bottom_product.dart';
 import 'package:fashion_shop_app/pages/product/components/image_list.dart';
 import 'package:fashion_shop_app/pages/product/components/product_describle.dart';
 import 'package:fashion_shop_app/pages/product/components/product_detail.dart';
 import 'package:fashion_shop_app/pages/product/components/product_rating.dart';
 import 'package:fashion_shop_app/pages/product/components/user_rating_list.dart';
+import 'package:fashion_shop_app/states/product_state.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
