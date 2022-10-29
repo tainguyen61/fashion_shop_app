@@ -1,9 +1,14 @@
 import 'package:fashion_shop_app/models/product_model.dart';
+import 'package:fashion_shop_app/pages/login/login_page.dart';
 import 'package:fashion_shop_app/states/cart_state.dart';
+import 'package:fashion_shop_app/states/favorite_state.dart';
+import 'package:fashion_shop_app/states/product_state.dart';
+import 'package:fashion_shop_app/states/userState.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BottomProduct extends StatelessWidget {
   String id;
@@ -28,6 +33,8 @@ class BottomProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(userState.userInfo.isNotEmpty){
+    }
     return Container(
       height: Dimension.size80,
       padding: EdgeInsets.symmetric(
@@ -67,26 +74,47 @@ class BottomProduct extends StatelessWidget {
               ),
             ),
           ),
+          // Flexible(
+          //   flex: 2,
+          //   child: InkWell(
+          //     onTap: () async{
+          //       if(userState.userInfo.isEmpty){
+          //         Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage(),));
+          //       } else if(productState.getStatusFavorite(id)){
+          //         await productState.removeFavorite(productState.getIdFavorite(id));
+          //         productState.getFavoriteList();
+          //         productState.getStatusFavorite(id);
+          //       }else{
+          //         await productState.addFavorite(id);
+          //         productState.getFavoriteList();
+          //         productState.getStatusFavorite(id);
+          //       }
+          //     },
+          //     child: Container(
+          //       height: Dimension.size50,
+          //       width: Dimension.size50,
+          //       padding: EdgeInsets.symmetric(horizontal: Dimension.size10),
+          //       decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(Dimension.radius5),
+          //           border: Border.all(
+          //             color: AppColor.nearlyBlue,
+          //           )),
+          //       child: Consumer<ProductState>(builder: (context, value, child) {
+          //         return productState.getStatusFavorite(id) ? Icon(
+          //           Icons.favorite,
+          //           size: Dimension.iconSize24,
+          //           color: AppColor.red,
+          //         ): Icon(
+          //           Icons.favorite_border,
+          //           size: Dimension.iconSize24,
+          //           color: AppColor.nearlyBlue,
+          //         );
+          //       },),
+          //     ),
+          //   ),
+          // ),
           Flexible(
-            flex: 2,
-            child: Container(
-              height: Dimension.size50,
-              width: Dimension.size50,
-              padding: EdgeInsets.symmetric(horizontal: Dimension.size10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimension.radius5),
-                  border: Border.all(
-                    color: AppColor.nearlyBlue,
-                  )),
-              child: Icon(
-                Icons.favorite_border,
-                size: Dimension.iconSize24,
-                color: AppColor.nearlyBlue,
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 6,
+            flex: 8,
             child: InkWell(
               onTap: (){
                 cartState.addProduct(ProductModel(id: id, describle: describle, idcategory: idcategory, img: img, name: name, price: price, rating: rating, sex: sex, sold: sold),);

@@ -1,6 +1,7 @@
 import 'package:fashion_shop_app/models/product_model_test.dart';
 import 'package:fashion_shop_app/pages/account/components/components/my_bill.dart';
 import 'package:fashion_shop_app/states/bill_state.dart';
+import 'package:fashion_shop_app/states/favorite_state.dart';
 import 'package:fashion_shop_app/states/panel_state.dart';
 import 'package:fashion_shop_app/states/product_state.dart';
 import 'package:fashion_shop_app/models/test_page.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider<ProductState>(create: (context) => productState),
             ChangeNotifierProvider<PanelState>(create: (context) => panelState),
             ChangeNotifierProvider<BillState>(create: (context) => billState),
+            ChangeNotifierProvider<FavoriteState>(create: (context) => favoriteState),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
