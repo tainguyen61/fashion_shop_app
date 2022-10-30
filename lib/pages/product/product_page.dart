@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,7 +23,7 @@ class ProductPage extends StatefulWidget {
   String id;
   String describle;
   String idcategory;
-  String img;
+  List img;
   String name;
   int price;
   double rating;

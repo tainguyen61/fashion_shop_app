@@ -14,7 +14,7 @@ class BottomProduct extends StatelessWidget {
   String id;
   String describle;
   String idcategory;
-  String img;
+  List img;
   String name;
   int price;
   double rating;

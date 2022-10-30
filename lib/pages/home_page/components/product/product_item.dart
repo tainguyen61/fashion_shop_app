@@ -9,7 +9,7 @@ class ProductItem extends StatefulWidget {
   String id;
   String describle;
   String idcategory;
-  String img;
+  List img;
   String name;
   int price;
   double rating;
@@ -68,7 +68,7 @@ class _ProductItemState extends State<ProductItem> {
                 decoration: BoxDecoration(
                   color: AppColor.nearlyWhite,
                   image: DecorationImage(
-                      image: NetworkImage(widget.img), fit: BoxFit.fill),
+                      image: NetworkImage(widget.img[0]), fit: BoxFit.fill),
                 ),
               ),
               Padding(

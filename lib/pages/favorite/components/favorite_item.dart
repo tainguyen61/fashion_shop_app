@@ -6,7 +6,7 @@ class FavoriteItem extends StatelessWidget {
   String id;
   String describle;
   String idcategory;
-  String img;
+  List img;
   String name;
   int price;
   double rating;
@@ -40,7 +40,7 @@ class FavoriteItem extends StatelessWidget {
                 width: Dimension.size140,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(img),
+                      image: NetworkImage(img[0]),
                     )),
               ),
               SizedBox(

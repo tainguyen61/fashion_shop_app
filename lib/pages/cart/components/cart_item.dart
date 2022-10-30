@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class CartItem extends StatelessWidget {
   final int index;
   final String id;
-  final String img;
+  final List img;
   final String name;
   final int price;
   final bool isChecked;
@@ -47,7 +47,7 @@ class CartItem extends StatelessWidget {
               width: Dimension.size80,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(img),
+                    image: NetworkImage(img[0]),
                   )),
             ),
           ),

@@ -1,23 +1,26 @@
+import 'dart:convert';
+
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:flutter/material.dart';
 
 class ImageList extends StatelessWidget {
-  String img;
+  List img;
   ImageList({Key? key, required this.img}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print(img[0]);
     return Container(
       height: Dimension.size350,
       child: PageView.builder(
-        itemCount: 1,
+        itemCount: img.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Container(
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                  img,
+                  img[index],
                 ),
                 fit: BoxFit.cover,
               ),

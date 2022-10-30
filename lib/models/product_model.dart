@@ -4,7 +4,7 @@ class ProductModel {
   String id;
   String describle;
   String idcategory;
-  String img;
+  List img;
   String name;
   int price;
   double rating;
@@ -27,13 +27,12 @@ class ProductModel {
       : id = snapshot.id,
         describle = snapshot.data()['describle'],
         idcategory = snapshot.data()['idcategory'],
-        img = snapshot.data()['img'],
+        img = List<String>.from(jsonDecode(snapshot.data()['img'])),
         name = snapshot.data()['name'],
         price = snapshot.data()['price'],
         rating = snapshot.data()['rating'],
         sex = snapshot.data()['sex'],
         sold = snapshot.data()['sold'].toInt();
-
 
 
 }
