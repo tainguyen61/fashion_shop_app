@@ -15,39 +15,42 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    productState.getProductList();
     return Consumer<ProductState>(builder: (context, value, child) {
-      return Container(
-        padding: EdgeInsets.all(Dimension.size10),
-        decoration: BoxDecoration(
-          color: AppColor.backgroundGrey,
-        ),
-        child: GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisExtent: Dimension.size300,
-            crossAxisSpacing: Dimension.size10,
-            mainAxisSpacing: Dimension.size10,
+      return StreamBuilder(
+        stream: productState.getProductList(),
+        builder: (context, snapshot) {
+        return Container(
+          padding: EdgeInsets.all(Dimension.size10),
+          decoration: BoxDecoration(
+            color: AppColor.backgroundGrey,
           ),
-          itemCount: productState.productList.length,
-          itemBuilder: (context, index) {
-            ProductModel productItem = productState.productList[index];
-            return ProductItem(
-              id: productItem.id,
-              name: productItem.name,
-              describle: productItem.describle,
-              idcategory: productItem.idcategory,
-              img: productItem.img,
-              price: productItem.price,
-              rating: productItem.rating,
-              sex: productItem.sex,
-              sold: productItem.sold,
-            );
-          },
-        ),
-      );
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisExtent: Dimension.size300,
+              crossAxisSpacing: Dimension.size10,
+              mainAxisSpacing: Dimension.size10,
+            ),
+            itemCount: productState.productList.length,
+            itemBuilder: (context, index) {
+              ProductModel productItem = productState.productList[index];
+              return ProductItem(
+                id: productItem.id,
+                name: productItem.name,
+                describle: productItem.describle,
+                idcategory: productItem.idcategory,
+                img: productItem.img,
+                price: productItem.price,
+                rating: productItem.rating,
+                sex: productItem.sex,
+                sold: productItem.sold,
+              );
+            },
+          ),
+        );
+      },);
     },);
   }
 }

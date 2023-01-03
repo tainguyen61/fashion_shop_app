@@ -1,10 +1,9 @@
-class FavoriteModel{
-  String idFavorite;
+class FavoriteProduct{
   String id;
+  String img;
+  String name;
+  String describle;
+  int price;
 
-  FavoriteModel({required this.idFavorite,required this.id});
-
-  FavoriteModel.fromSnapshot(snapshot)
-      : idFavorite = snapshot.id,
-        id = snapshot.data()['id'];
+  FavoriteProduct({required this.id,required this.img,required this.name,required this.price,required this.describle});
 }

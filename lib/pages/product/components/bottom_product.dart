@@ -74,45 +74,39 @@ class BottomProduct extends StatelessWidget {
               ),
             ),
           ),
-          // Flexible(
-          //   flex: 2,
-          //   child: InkWell(
-          //     onTap: () async{
-          //       if(userState.userInfo.isEmpty){
-          //         Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage(),));
-          //       } else if(productState.getStatusFavorite(id)){
-          //         await productState.removeFavorite(productState.getIdFavorite(id));
-          //         productState.getFavoriteList();
-          //         productState.getStatusFavorite(id);
-          //       }else{
-          //         await productState.addFavorite(id);
-          //         productState.getFavoriteList();
-          //         productState.getStatusFavorite(id);
-          //       }
-          //     },
-          //     child: Container(
-          //       height: Dimension.size50,
-          //       width: Dimension.size50,
-          //       padding: EdgeInsets.symmetric(horizontal: Dimension.size10),
-          //       decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(Dimension.radius5),
-          //           border: Border.all(
-          //             color: AppColor.nearlyBlue,
-          //           )),
-          //       child: Consumer<ProductState>(builder: (context, value, child) {
-          //         return productState.getStatusFavorite(id) ? Icon(
-          //           Icons.favorite,
-          //           size: Dimension.iconSize24,
-          //           color: AppColor.red,
-          //         ): Icon(
-          //           Icons.favorite_border,
-          //           size: Dimension.iconSize24,
-          //           color: AppColor.nearlyBlue,
-          //         );
-          //       },),
-          //     ),
-          //   ),
-          // ),
+          Flexible(
+            flex: 2,
+            child: InkWell(
+              onTap: () async{
+              },
+              child: Container(
+                height: Dimension.size50,
+                width: Dimension.size50,
+                padding: EdgeInsets.symmetric(horizontal: Dimension.size10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimension.radius5),
+                    border: Border.all(
+                      color: AppColor.nearlyBlue,
+                    )),
+                child: Icon(
+                  Icons.favorite_border,
+                  size: Dimension.iconSize24,
+                  color: AppColor.nearlyBlue,
+                )
+                // Consumer<ProductState>(builder: (context, value, child) {
+                //   return productState.getStatusFavorite(id) ? Icon(
+                //     Icons.favorite,
+                //     size: Dimension.iconSize24,
+                //     color: AppColor.red,
+                //   ): Icon(
+                //     Icons.favorite_border,
+                //     size: Dimension.iconSize24,
+                //     color: AppColor.nearlyBlue,
+                //   );
+                // },),
+              ),
+            ),
+          ),
           Flexible(
             flex: 8,
             child: InkWell(

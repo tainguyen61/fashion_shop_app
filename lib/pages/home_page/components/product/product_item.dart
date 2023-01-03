@@ -117,10 +117,10 @@ class _ProductItemState extends State<ProductItem> {
                           size: Dimension.font12,
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -9,7 +9,6 @@ class ImageList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(img[0]);
     return Container(
       height: Dimension.size350,
       child: PageView.builder(

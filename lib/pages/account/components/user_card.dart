@@ -124,11 +124,8 @@ class _UserCardState extends State<UserCard> {
                                             pickedFile = result.files.first;
                                           }
                                           if (pickedFile != null) {
-                                            var now = DateTime.now();
-                                            var formatterDate =
-                                                DateFormat('ddMMyyyykkmmss');
                                             final name =
-                                                '${formatterDate.format(now)}${pickedFile.name}';
+                                                '${DateTime.now().microsecondsSinceEpoch}.jpg';
                                             final path =
                                                 'files/imageUsers/${name}';
                                             final file = File(pickedFile.path!);

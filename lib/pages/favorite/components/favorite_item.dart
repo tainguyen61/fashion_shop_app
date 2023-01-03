@@ -1,3 +1,4 @@
+import 'package:fashion_shop_app/states/favorite_state.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
@@ -5,27 +6,21 @@ import 'package:flutter/material.dart';
 class FavoriteItem extends StatelessWidget {
   String id;
   String describle;
-  String idcategory;
-  List img;
+  String img;
   String name;
   int price;
-  double rating;
-  String sex;
-  int sold;
   FavoriteItem({Key? key,required this.id,
     required this.describle,
-    required this.idcategory,
     required this.img,
     required this.name,
-    required this.price,
-    required this.rating,
-    required this.sex,
-    required this.sold}) : super(key: key);
+    required this.price}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        favoriteState.sqLiteController.deleteStudent(id);
+      },
       child: Container(
         margin: EdgeInsets.only(top: Dimension.size10),
         child: Container(
@@ -40,7 +35,7 @@ class FavoriteItem extends StatelessWidget {
                 width: Dimension.size140,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(img[0]),
+                      image: AssetImage('assets/images/img1.jpg'),
                     )),
               ),
               SizedBox(
@@ -55,7 +50,7 @@ class FavoriteItem extends StatelessWidget {
                     children: [
                       BigText(text: name,size: Dimension.font16,maxLine: 2,overflow: TextOverflow.ellipsis,),
                       BigText(text: price.toString(),fontWeight: FontWeight.w500,maxLine: 1,overflow: TextOverflow.ellipsis,),
-                      BigText(text: rating.toString(),size: Dimension.font16,),
+                      // BigText(text: rating.toString(),size: Dimension.font16,),
                     ],
                   ),
                 ),

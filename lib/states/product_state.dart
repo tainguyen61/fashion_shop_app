@@ -9,13 +9,27 @@ import 'package:flutter/material.dart';
 
 class ProductState extends ChangeNotifier {
   List<ProductModel> productList = [];
-  List<FavoriteModel> favoriteList = [];
 
-  Future getProductList() async {
+  Stream getProductList() async* {
     var data = await FirebaseFirestore.instance.collection('products').get();
     productList =
         List.from(data.docs.map((doc) => ProductModel.fromSnapshot(doc)));
     notifyListeners();
+  }
+
+
+  Future<ProductModel> fetchProductInfo(String id) async {
+    ProductModel product;
+    var snapshot = await FirebaseFirestore.instance.collection('products').doc(id).get();
+    product = ProductModel.fromSnapshot(snapshot);
+    return product;
+  }
+
+  Future<ProductModel> getProductInfo(String id) async{
+    ProductModel productModel;
+    var snapshot = await FirebaseFirestore.instance.collection('products').doc(id).get();
+    productModel = ProductModel.fromSnapshot(snapshot);
+    return productModel;
   }
 
   addFavorite(String id) async {
@@ -32,37 +46,37 @@ class ProductState extends ChangeNotifier {
     notifyListeners();
   }
 
-  getIdFavorite(String id){
-    for(int i = 0;i<favoriteList.length;i++){
-      if(favoriteList[i].id == id){
-        return favoriteList[i].idFavorite;
-      }
-    }
-  }
+  // getIdFavorite(String id){
+  //   for(int i = 0;i<favoriteList.length;i++){
+  //     if(favoriteList[i].id == id){
+  //       return favoriteList[i].idFavorite;
+  //     }
+  //   }
+  // }
 
-  getFavoriteList() async {
-    favoriteList.clear();
-    await FirebaseFirestore.instance.collection('users').doc(
-        userState.userInfo[0].id).collection('favorite').get().then((
-        QuerySnapshot querySnapshot) =>
-        querySnapshot.docs.forEach((doc) {
-          favoriteList.add(FavoriteModel.fromSnapshot(doc));
-        }));
-    notifyListeners();
-  }
-
-  getStatusFavorite(String id){
-    if(favoriteList.isNotEmpty){
-      for(int i = 0;i<favoriteList.length;i++){
-        if(favoriteList[i].id == id){
-          return true;
-        }
-      }
-      return false;
-    }else{
-      return false;
-    }
-  }
+  // getFavoriteList() async {
+  //   favoriteList.clear();
+  //   await FirebaseFirestore.instance.collection('users').doc(
+  //       userState.userInfo[0].id).collection('favorite').get().then((
+  //       QuerySnapshot querySnapshot) =>
+  //       querySnapshot.docs.forEach((doc) {
+  //         favoriteList.add(FavoriteModel.fromSnapshot(doc));
+  //       }));
+  //   notifyListeners();
+  // }
+  //
+  // getStatusFavorite(String id){
+  //   if(favoriteList.isNotEmpty){
+  //     for(int i = 0;i<favoriteList.length;i++){
+  //       if(favoriteList[i].id == id){
+  //         return true;
+  //       }
+  //     }
+  //     return false;
+  //   }else{
+  //     return false;
+  //   }
+  // }
 
   ProductState(this.productList);
 

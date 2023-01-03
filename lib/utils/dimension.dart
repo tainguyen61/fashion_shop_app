@@ -39,6 +39,7 @@ class Dimension{
   static double size180 = 180.sp;
   static double size200 = 200.sp;
   static double size300 = 300.sp;
+  static double size320 = 320.sp;
   static double size350 = 350.sp;
 
   //radius

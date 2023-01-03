@@ -2,12 +2,15 @@ import 'package:fashion_shop_app/pages/account/account.dart';
 import 'package:fashion_shop_app/pages/chat/chat_page.dart';
 import 'package:fashion_shop_app/pages/favorite/favorite_page.dart';
 import 'package:fashion_shop_app/pages/home_page/home_page.dart';
+import 'package:fashion_shop_app/states/favorite_state.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'admin/admin_page.dart';
 
 class HomePageController extends StatefulWidget {
   const HomePageController({Key? key}) : super(key: key);
@@ -25,6 +28,7 @@ class _HomePageControllerState extends State<HomePageController> {
       FavoritePage(),
       ChatPage(),
       AccountPage(),
+      AdminPage(),
     ];
     return Scaffold(
       body: body[navigatorBarIndex],
@@ -33,7 +37,6 @@ class _HomePageControllerState extends State<HomePageController> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.blue,
         onTap: (int index){
-          print(index.toString());
           setState((){
             navigatorBarIndex = index;
           });
@@ -60,6 +63,11 @@ class _HomePageControllerState extends State<HomePageController> {
             activeIcon: Icon(Icons.person),
             label: 'Tài khoản',
             icon: Icon(Icons.perm_identity_sharp),
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(Icons.person),
+            label: 'Admin',
+            icon: Icon(Icons.key),
           ),
         ],
       )
