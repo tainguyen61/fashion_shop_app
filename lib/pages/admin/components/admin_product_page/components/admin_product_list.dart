@@ -32,8 +32,9 @@ class AdminProductList extends StatelessWidget {
             id: productItem.id,
             name: productItem.name,
             describle: productItem.describle,
-            idcategory: productItem.idcategory,
             img: productItem.img,
+            color: productItem.color,
+            size: productItem.size,
             price: productItem.price,
             rating: productItem.rating,
             sex: productItem.sex,
@@ -43,30 +44,30 @@ class AdminProductList extends StatelessWidget {
       ),
     );
 
-      GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisExtent: Dimension.size300,
-        crossAxisSpacing: Dimension.size10,
-        mainAxisSpacing: Dimension.size10,
-      ),
-      itemCount: productState.productList.length,
-      itemBuilder: (context, index) {
-        ProductModel productItem = productState.productList[index];
-        return AdminProductItem(
-          id: productItem.id,
-          name: productItem.name,
-          describle: productItem.describle,
-          idcategory: productItem.idcategory,
-          img: productItem.img,
-          price: productItem.price,
-          rating: productItem.rating,
-          sex: productItem.sex,
-          sold: productItem.sold,
-        );
-      },
-    );
+    //   GridView.builder(
+    //   shrinkWrap: true,
+    //   physics: const NeverScrollableScrollPhysics(),
+    //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    //     crossAxisCount: 2,
+    //     mainAxisExtent: Dimension.size300,
+    //     crossAxisSpacing: Dimension.size10,
+    //     mainAxisSpacing: Dimension.size10,
+    //   ),
+    //   itemCount: productState.productList.length,
+    //   itemBuilder: (context, index) {
+    //     ProductModel productItem = productState.productList[index];
+    //     return AdminProductItem(
+    //       id: productItem.id,
+    //       name: productItem.name,
+    //       describle: productItem.describle,
+    //       idcategory: productItem.idcategory,
+    //       img: productItem.img,
+    //       price: productItem.price,
+    //       rating: productItem.rating,
+    //       sex: productItem.sex,
+    //       sold: productItem.sold,
+    //     );
+    //   },
+    // );
   }
 }

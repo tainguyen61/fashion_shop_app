@@ -13,23 +13,28 @@ import 'package:provider/provider.dart';
 class BottomProduct extends StatelessWidget {
   String id;
   String describle;
-  String idcategory;
   List img;
+  List color;
+  List size;
+  String category;
   String name;
   int price;
   double rating;
   String sex;
   int sold;
+
   BottomProduct({Key? key,
     required this.id,
     required this.describle,
-    required this.idcategory,
     required this.img,
+    required this.color,
+    required this.size,
+    required this.category,
     required this.name,
     required this.price,
     required this.rating,
     required this.sex,
-    required this.sold}) : super(key: key);
+    required this.sold,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -111,10 +116,11 @@ class BottomProduct extends StatelessWidget {
             flex: 8,
             child: InkWell(
               onTap: (){
-                cartState.addProduct(ProductModel(id: id, describle: describle, idcategory: idcategory, img: img, name: name, price: price, rating: rating, sex: sex, sold: sold),);
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text("Sản phẩm đã được thêm vào giỏ hàng!"),
-                ),);
+                // print('colorChose: ${colorChoose}');
+                // cartState.addProduct(ProductModel(id: id, describle: describle,category: category, img: img,color: color,size: size, name: name, price: price, rating: rating, sex: sex, sold: sold),);
+                // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                //   content: Text("Sản phẩm đã được thêm vào giỏ hàng!"),
+                // ),);
                 },
               child: Container(
                 decoration: BoxDecoration(

@@ -21,7 +21,7 @@ class CartList extends StatelessWidget {
             return
               CartItem(
               index: index,
-              id: cartItem.productModel.id,
+              id: cartItem.productModel.productId,
               img: cartItem.productModel.img,
               name: cartItem.productModel.name,
               // price: cartItem.productModel.price,

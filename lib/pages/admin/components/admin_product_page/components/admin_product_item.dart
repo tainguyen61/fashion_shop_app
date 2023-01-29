@@ -7,8 +7,9 @@ import 'package:intl/intl.dart';
 class AdminProductItem extends StatelessWidget {
   String id;
   String describle;
-  String idcategory;
   List img;
+  List color;
+  List size;
   String name;
   int price;
   double rating;
@@ -17,8 +18,9 @@ class AdminProductItem extends StatelessWidget {
   AdminProductItem({Key? key,
     required this.id,
     required this.describle,
-    required this.idcategory,
     required this.img,
+    required this.color,
+    required this.size,
     required this.name,
     required this.price,
     required this.rating,

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fashion_shop_app/models/bill_detail_model.dart';
 import 'package:fashion_shop_app/models/cart_item_model.dart';
 import 'package:fashion_shop_app/models/product_model.dart';
 import 'package:fashion_shop_app/states/userState.dart';
@@ -20,8 +21,11 @@ class CartState extends ChangeNotifier {
       for (int i = 0; i < cartList.length; i++) {
         if (cartList[i].isChecked) {
           users.doc(userState.userInfo[0].id).collection('bill_detail').add({
-            "productId": cartList[i].productModel.id,
+            "productId": cartList[i].productModel.productId,
             "img": cartList[i].productModel.img,
+            "color": cartList[i].productModel.color,
+            "size": cartList[i].productModel.size,
+            "category": cartList[i].productModel.category,
             "name": cartList[i].productModel.name,
             "price": cartList[i].productModel.price,
             "quantity": cartList[i].count,
@@ -47,10 +51,10 @@ class CartState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addProduct(ProductModel productModel) {
+  void addProduct(BillDetailItem productModel) {
     bool check = false;
     for (int i = 0; i < cartList.length; i++) {
-      if (identical(cartList[i].productModel.id, productModel.id)) {
+      if (identical(cartList[i].productModel.productId, productModel.productId)) {
         check = true;
       }
     }

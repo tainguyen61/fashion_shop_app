@@ -2,6 +2,9 @@ class BillDetailModel {
   String id;
   String productId;
   String img;
+  String color;
+  String size;
+  String category;
   String name;
   int price;
   int quantity;
@@ -16,6 +19,9 @@ class BillDetailModel {
       {required this.id,
       required this.productId,
       required this.img,
+      required this.color,
+      required this.size,
+      required this.category,
       required this.name,
       required this.price,
       required this.quantity,
@@ -30,6 +36,9 @@ class BillDetailModel {
       : id = snapshot.id,
         productId = snapshot.data()['productId'],
         img = snapshot.data()['img'],
+        color = snapshot.data()['color'],
+        size = snapshot.data()['size'],
+        category = snapshot.data()['category'],
         name = snapshot.data()['name'],
         price = snapshot.data()['price'],
         quantity = snapshot.data()['quantity'],
@@ -39,4 +48,17 @@ class BillDetailModel {
         address = snapshot.data()['address'],
         userName = snapshot.data()['userName'],
         userPhone = snapshot.data()['userPhone'];
+}
+
+class BillDetailItem{
+  String productId;
+  String img;
+  String color;
+  String size;
+  String category;
+  String name;
+  int price;
+
+  BillDetailItem({required this.productId,required this.img,required this.color,required this.size,required this.category,
+    required this.name,required this.price});
 }

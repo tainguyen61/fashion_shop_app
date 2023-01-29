@@ -12,6 +12,12 @@ class CategoryState extends ChangeNotifier{
     notifyListeners();
   }
 
+  List<String> getDropdownCategory(){
+    List<String> dropdownCategory = [];
+    categoryList.forEach((element) {dropdownCategory.add(element.name);});
+    return dropdownCategory;
+  }
+
   CategoryState({required this.categoryList});
 }
 

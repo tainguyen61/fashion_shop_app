@@ -8,8 +8,10 @@ import 'package:intl/intl.dart';
 class ProductItem extends StatefulWidget {
   String id;
   String describle;
-  String idcategory;
   List img;
+  List color;
+  List size;
+  String category;
   String name;
   int price;
   double rating;
@@ -20,8 +22,10 @@ class ProductItem extends StatefulWidget {
       {Key? key,
       required this.id,
       required this.describle,
-      required this.idcategory,
       required this.img,
+        required this.color,
+        required this.size,
+        required this.category,
       required this.name,
       required this.price,
       required this.rating,
@@ -44,8 +48,10 @@ class _ProductItemState extends State<ProductItem> {
               id: widget.id,
               name: widget.name,
               describle: widget.describle,
-              idcategory: widget.idcategory,
               img: widget.img,
+              color: widget.color,
+              size: widget.size,
+              category: widget.category,
               price: widget.price,
               rating: widget.rating,
               sex: widget.sex,

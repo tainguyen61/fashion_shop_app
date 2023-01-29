@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:fashion_shop_app/states/category_state.dart';
 import 'package:fashion_shop_app/utils/colors.dart';
 import 'package:fashion_shop_app/utils/dimension.dart';
 import 'package:fashion_shop_app/widget/big_text.dart';
@@ -41,11 +42,18 @@ class _AdminProductAddState extends State<AdminProductAdd> {
     setState(() {});
   }
 
-  List<String> listItem = ['loai 1', 'loai 2'];
+  List<String> listItem = categoryState.getDropdownCategory();
   List<String> listSex = ['Nam','Nữ','Không'];
-  String valueChoose = 'loai 1';
+  String? valueChoose;
   String sexChoose = 'Nam';
   List<String> listSize = [];
+
+
+
+  final TextEditingController _productName = TextEditingController();
+  final TextEditingController _productPrice = TextEditingController();
+  final TextEditingController _productDescribe = TextEditingController();
+  final TextEditingController _productSize = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -56,12 +64,8 @@ class _AdminProductAddState extends State<AdminProductAdd> {
     String productDescribe;
     String productSex;
     String productSize;
-
-    final TextEditingController _productName = TextEditingController();
-    final TextEditingController _productPrice = TextEditingController();
-    final TextEditingController _productDescribe = TextEditingController();
-    final TextEditingController _productSex = TextEditingController();
-    final TextEditingController _productSize = TextEditingController();
+    String productImage;
+    String productColor;
 
     return Scaffold(
       appBar: AppBar(
@@ -131,6 +135,7 @@ class _AdminProductAddState extends State<AdminProductAdd> {
                         BigText(text: 'Loại sản phẩm: ',size: Dimension.size16,color: AppColor.nearlyBlack,),
                         SizedBox(width: Dimension.size10,),
                         DropdownButton(
+                          hint: BigText(text: 'Chọn loại',size: Dimension.size16,color: AppColor.nearlyBlack,),
                           value: valueChoose, //implement initial value or selected value
                           onChanged: (value){
                             setState(() { //set state will update UI and State of your App
@@ -225,13 +230,6 @@ class _AdminProductAddState extends State<AdminProductAdd> {
                               decoration: InputDecoration(
                                 labelText: "Size",
                               ),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "Họ tên không hợp lệ!";
-                                } else {
-                                  return null;
-                                }
-                              },
                             ),
                           ),
                         ),
@@ -328,76 +326,84 @@ class _AdminProductAddState extends State<AdminProductAdd> {
                     ),
                     InkWell(
                       onTap: () async {
-                        colorList.clear();
-                        pickerColor.forEach((element) {
-                          colorList.add(element.value.toRadixString(16));
-                        });
-                        String colorJson = json.encode(colorList);
-                        print(colorJson);
-                        print(await uploadListFile(0));
-                        // if (formKey.currentState!.validate()) {
-                        //   try {
-                        //     productName = _productName.text;
-                        //     productCategory = _productCategory.text;
-                        //     productPrice = int.parse(_productPrice.text);
-                        //     productDescribe = _productDescribe.text;
-                        //     productSex = _productSex.text;
-                        //     showDialog(
-                        //       context: context,
-                        //       builder: (context) {
-                        //         return AlertDialog(
-                        //           content: Container(
-                        //             height: 100.sp,
-                        //             alignment: Alignment.center,
-                        //             child: CircularProgressIndicator(),
-                        //           ),
-                        //         );
-                        //       },
-                        //     );
-                        //
-                        //     await FirebaseFirestore.instance
-                        //         .collection('products')
-                        //         .add({
-                        //           'describle': productDescribe,
-                        //           'idcategory': productCategory,
-                        //           'rating': null,
-                        //           'name': productName,
-                        //           'price': productPrice,
-                        //           'img':
-                        //               "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
-                        //           'sex': productSex,
-                        //           'sold': null,
-                        //         })
-                        //         .then((value) => {
-                        //               print('Product Added'),
-                        //             })
-                        //         .catchError((error) =>
-                        //             print("Failed to add user: $error"));
-                        //     Navigator.pop(context);
-                        //     showDialog(
-                        //       context: context,
-                        //       builder: (context) {
-                        //         return AlertDialog(
-                        //           title: BigText(
-                        //             text: 'Thông báo',
-                        //             size: Dimension.size16,
-                        //             color: AppColor.nearlyBlack,
-                        //           ),
-                        //           content: Text('thêm sản phẩm thành công!'),
-                        //           actions: [
-                        //             TextButton(
-                        //                 onPressed: () {
-                        //                   Navigator.pop(context);
-                        //                 },
-                        //                 child: const Text('Ok')),
-                        //           ],
-                        //         );
-                        //       },
-                        //     );
-                        //   } catch (ex) {
-                        //     print('error');
-                        //   }
-                        // }
+                        try{
+                          if (formKey.currentState!.validate()) {
+                            try {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: Container(
+                                      height: 100.sp,
+                                      alignment: Alignment.center,
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  );
+                                },
+                              );
+
+                              colorList.clear();
+                              pickerColor.forEach((element) {
+                                colorList.add(element.value.toRadixString(16));
+                              });
+                              await uploadListFile(0);
+
+                              productName = _productName.text;
+                              productCategory = valueChoose.toString();
+                              productPrice = int.parse(_productPrice.text);
+                              productDescribe = _productDescribe.text;
+                              productSex = sexChoose;
+                              productImage = json.encode(urlImage);
+                              productColor = json.encode(colorList);
+                              productSize = json.encode(listSize);
+                              await FirebaseFirestore.instance
+                                  .collection('products')
+                                  .add({
+                                    'describle': productDescribe,
+                                    'rating': 0,
+                                    'name': productName,
+                                    'price': productPrice,
+                                    'img': productImage,
+                                    'sex': productSex,
+                                    'color': productColor,
+                                    'size': productSize,
+                                    'category': productCategory,
+                                    'sold': 0,
+                                  })
+                                  .then((value) => {
+                                        print('Product Added'),
+                                      })
+                                  .catchError((error) =>
+                                      print("Failed to add user: $error"));
+                              Navigator.pop(context);
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: BigText(
+                                      text: 'Thông báo',
+                                      size: Dimension.size16,
+                                      color: AppColor.nearlyBlack,
+                                    ),
+                                    content: Text('thêm sản phẩm thành công!'),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            urlImage.clear();
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text('Ok')),
+                                    ],
+                                  );
+                                },
+                              );
+                            } catch (ex) {
+                              print('error');
+                            }
+                          }
+                        }catch(e){
+                          print('add product error!');
+                        }
                       },
                       child: SizedBox(
                         width: double.infinity,
